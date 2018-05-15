@@ -3,40 +3,38 @@ var mongoose = require('mongoose'),
   Note = mongoose.model('Notes');
 
 exports.list_all_notes = function(req, res) {
-  Note.find({}, function(err, task) {
+  console.log("notes")
+  Note.find({}, function(err, notes) {
     if (err)
       res.send(err);
-    res.json(task);
+    res.json(notes);
   });
 };
 
 
-
-
 exports.create_a_note = function(req, res) {
-  var new_task = new Note(req.body);
-  new_task.save(function(err, task) {
+  Note.create(req.body, function(err, note) {
     if (err)
       res.send(err);
-    res.json(task);
+    res.json(note)
   });
 };
 
 
 exports.read_a_note = function(req, res) {
-  Note.findById(req.params.noteId, function(err, task) {
+  Note.findById(req.params.noteId, function(err, note) {
     if (err)
       res.send(err);
-    res.json(task);
+    res.json(note);
   });
 };
 
 
 exports.update_a_note = function(req, res) {
-  Note.findOneAndUpdate({_id: req.params.noteId}, req.body, {new: true}, function(err, task) {
+  Note.findOneAndUpdate({_id: req.params.noteId}, req.body, {new: true}, function(err, note) {
     if (err)
       res.send(err);
-    res.json(task);
+    res.json(note);
   });
 };
 
@@ -44,7 +42,7 @@ exports.update_a_note = function(req, res) {
 exports.delete_a_note = function(req, res) {
   Note.remove({
     _id: req.params.noteId
-  }, function(err, task) {
+  }, function(err, note) {
     if (err)
       res.send(err);
     res.json({ message: 'Note successfully deleted' });

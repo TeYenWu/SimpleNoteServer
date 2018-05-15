@@ -2,12 +2,13 @@ var express = require('express'),
   app = express(),
   port = process.env.PORT || 3000,
   mongoose = require('mongoose'),
-  Task = require('./models/simpleNoteModel'), //created model loading here
   bodyParser = require('body-parser');
 
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/Notedb');
+mongoose.connect('mongodb://127.0.0.1/Notedb');
+
+var note = require('./models/simpleNoteModel.js')  //created model loading here
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -21,4 +22,4 @@ routes(app); //register the route
 app.listen(port);
 
 
-console.log('todo list RESTful API server started on: ' + port);
+console.log('note list RESTful API server started on: ' + port);

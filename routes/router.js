@@ -3,7 +3,9 @@ module.exports = function(app) {
 
   // todoList Routes
   app.route('/notes')
-    .get(controller.list_all_notes)
+    .get(controller.list_all_notes);
+
+  app.route('/note')
     .post(controller.create_a_note);
 
 

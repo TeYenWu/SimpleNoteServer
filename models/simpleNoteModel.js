@@ -3,14 +3,8 @@ var Schema = mongoose.Schema;
 
 
 var NoteSchema = new Schema({
-  title: {
-    type: String,
-    required: 'Kindly enter the name of the task'
-  },
-  content: {
-    type: String,
-    required: 'Kindly enter the name of the task'
-  },
+  title: "String",
+  content: "String",
   createdAt: {
     type: Date,
     default: Date.now
@@ -22,7 +16,7 @@ var NoteSchema = new Schema({
 });
 
 NoteSchema.pre('save', function preSave(next){
-  this.updatedAt(Date.now());
+  this.updatedAt = Date.now();
   next();
 });
 
